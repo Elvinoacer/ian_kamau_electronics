@@ -1,0 +1,413 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-plex-mono);
+  --font-display: var(--font-space-grotesk);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-signal-green: var(--signal-green);
+  --color-signal-amber: var(--signal-amber);
+  --color-signal-blue: var(--signal-blue);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ---------------------------------------------------------------------------
+   Light theme — clean off-white surfaces (spec section 7)
+--------------------------------------------------------------------------- */
+:root {
+  --radius: 0.375rem;
+  --background: #f7f8fa;
+  --foreground: #111827;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --popover: #ffffff;
+  --popover-foreground: #111827;
+  --primary: #15803d;
+  --primary-foreground: #f0fdf4;
+  --secondary: #eef1f4;
+  --secondary-foreground: #111827;
+  --muted: #eef1f4;
+  --muted-foreground: #5b6470;
+  --accent: #e7f6ec;
+  --accent-foreground: #14532d;
+  --destructive: #b91c1c;
+  --border: #e2e6ea;
+  --input: #e2e6ea;
+  --ring: #16a34a;
+  --chart-1: #16a34a;
+  --chart-2: #d97706;
+  --chart-3: #2563eb;
+  --chart-4: #0891b2;
+  --chart-5: #7c3aed;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #111827;
+  --sidebar-primary: #15803d;
+  --sidebar-primary-foreground: #f0fdf4;
+  --sidebar-accent: #e7f6ec;
+  --sidebar-accent-foreground: #14532d;
+  --sidebar-border: #e2e6ea;
+  --sidebar-ring: #16a34a;
+  /* Engineering palette tokens */
+  --surface: #ffffff;
+  --elevated: #ffffff;
+  --signal-green: #16a34a;
+  --signal-amber: #b45309;
+  --signal-blue: #1d4ed8;
+  --grid-line: rgba(17, 24, 39, 0.045);
+  --grid-line-strong: rgba(17, 24, 39, 0.08);
+}
+
+/* ---------------------------------------------------------------------------
+   Dark theme — graphite surfaces (spec section 7). Default theme of the site.
+   Background #0B0D0F · Surface #12161A · Elevated #171C21
+   Text #F4F6F8 / #A7B0B8 · Border #252B31
+   Engineering green #4ADE80 (principal) · Signal amber #FBBF24 · Data blue #60A5FA
+--------------------------------------------------------------------------- */
+.dark {
+  --background: #0b0d0f;
+  --foreground: #f4f6f8;
+  --card: #12161a;
+  --card-foreground: #f4f6f8;
+  --popover: #171c21;
+  --popover-foreground: #f4f6f8;
+  --primary: #4ade80;
+  --primary-foreground: #052012;
+  --secondary: #171c21;
+  --secondary-foreground: #e7ecf0;
+  --muted: #171c21;
+  --muted-foreground: #a7b0b8;
+  --accent: #13241a;
+  --accent-foreground: #86efac;
+  --destructive: #f87171;
+  --border: #252b31;
+  --input: #252b31;
+  --ring: #4ade80;
+  --chart-1: #4ade80;
+  --chart-2: #fbbf24;
+  --chart-3: #60a5fa;
+  --chart-4: #22d3ee;
+  --chart-5: #c084fc;
+  --sidebar: #12161a;
+  --sidebar-foreground: #f4f6f8;
+  --sidebar-primary: #4ade80;
+  --sidebar-primary-foreground: #052012;
+  --sidebar-accent: #13241a;
+  --sidebar-accent-foreground: #86efac;
+  --sidebar-border: #252b31;
+  --sidebar-ring: #4ade80;
+  /* Engineering palette tokens */
+  --surface: #12161a;
+  --elevated: #171c21;
+  --signal-green: #4ade80;
+  --signal-amber: #fbbf24;
+  --signal-blue: #60a5fa;
+  --grid-line: rgba(167, 176, 184, 0.05);
+  --grid-line-strong: rgba(167, 176, 184, 0.1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv01";
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--signal-green) 30%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Engineering grid paper background — subtle schematic feel (spec sections 6-7)
+--------------------------------------------------------------------------- */
+.bg-grid-schematic {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bg-grid-fine {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.bg-crosshair {
+  background-image: radial-gradient(
+    circle at center,
+    var(--grid-line-strong) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* Thin technical rule used between homepage sections */
+.rule-technical {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border) 12%,
+    var(--border) 88%,
+    transparent
+  );
+}
+
+/* Scrollbar styling for long lists */
+.scrollbar-technical {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.scrollbar-technical::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-technical::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+.scrollbar-technical::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   Print styles — recruiter summary + CV pages (spec sections 28-29)
+--------------------------------------------------------------------------- */
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
+  .print-plain {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border-color: #d1d5db !important;
+    box-shadow: none !important;
+  }
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+  @page {
+    margin: 14mm;
+  }
+}
+
+/* Waveform draw-in animation (disabled under reduced motion via framer) */
+@keyframes wave-dash {
+  from {
+    stroke-dashoffset: 640;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   CINEMATIC MOTION SYSTEM — marquee, reveal masks, display type, grain
+--------------------------------------------------------------------------- */
+
+/* Infinite marquee ticker */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee-scroll var(--marquee-duration, 42s) linear infinite;
+  will-change: transform;
+}
+.marquee-paused:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Pulsing status dot */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal-green) 55%, transparent);
+  }
+  50% {
+    opacity: 0.75;
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+/* Slow Ken-Burns drift for full-bleed imagery */
+@keyframes slow-zoom {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.14);
+  }
+}
+.slow-zoom {
+  animation: slow-zoom 24s ease-out forwards;
+}
+
+/* Scroll cue line */
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.scroll-cue-line {
+  animation: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Outlined display type */
+.text-outline {
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--foreground) 60%, transparent);
+  color: transparent;
+}
+
+/* Cinematic film grain overlay */
+.grain-overlay {
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+/* Image editorial treatment */
+.img-editorial {
+  filter: saturate(0.82) contrast(1.06) brightness(0.94);
+}
+.img-editorial-hover {
+  transition: filter 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: saturate(0.15) contrast(1.05);
+}
+.group:hover .img-editorial-hover,
+.img-editorial-hover:hover {
+  filter: saturate(0.95) contrast(1.06);
+}
+
+/* Technical caption chips */
+.chip-technical {
+  font-family: var(--font-plex-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Split-line mask for text reveals */
+.split-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/* Custom hide/show header states */
+.header-hidden {
+  transform: translateY(-100%);
+}
+.header-transition {
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Lenis smooth scroll recommended styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}
